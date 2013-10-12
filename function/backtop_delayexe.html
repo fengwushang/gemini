@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <title></title>
+    <link  rel="stylesheet" />
+    <style type="text/css">
+    /*清除文档类型声明中的默认属性*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td { margin: 0; padding: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+ol, ul { list-style: none; }
+caption, th { text-align: left; }
+.space10 { clear: both; font-size: 0; height: 10px; line-height: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+q:before, q:after { content: ''; }
+body, p, h1, h2, h3, h4, h5, h6, ul, li, ol, dl, dd, dt, div, form { margin: 0px auto; }
+/*字体定义*/
+html, body { -webkit-text-size-adjust: none; _background-attackment: fixed; }
+body { font-size: 14px; font-family: "Microsoft Yahei","微软雅黑","SimSun"; color: #333; background:#fff; }
+table { font-size: inherit; font: 100%; }
+/*重新定义*/
+
+strong { font-weight: bold; }
+a { color: #333; text-decoration: none; cursor: pointer; }
+a:visited { color: #333; }
+a:hover { color: #f60; }
+a:active { color: #333; }
+button { border: none; }
+input, textarea { outline: none; background:#fafbfc;}
+ul, li, ol, li { list-style: none; }
+.clear { clear: both; font-size: 0px; height: 0px; vertical-align: bottom; line-height: 0px; }
+.clearfix:after { visibility: hidden; display: block; content: "."; clear: both; height: 0; line-height: 0; font-size: 0; }
+.clearfix { display: inline-block; }
+* html .clearfix { zoom: 1; }
+*:first-child + html .clearfix { zoom: 1; }
+
+.toph { width: 998px; height: 192px; }
+.toph_h { width: 998px; height: 28px; vertical-align: bottom; padding-top: 5px; }
+.tab_tit { width: 300px; height: 21px; float: left; }
+.tab_tit li { width: 70px; height: 27px; float: left; margin: 0 1px 0 0px; background-color: #fff; text-align: center; position:relative;}
+.tab_tit li a { width:70px; height:27px; display:block; position:absolute; top:0px; left:0px; text-align:center; background:#fff; }
+    .tab_tit li.hover {color:#333; border-top: 1px solid #999; border-left:1px solid #999;border-right:1px solid #999; cursor: pointer; background:#fafbfc;}
+
+.tab_tit li.hover a { text-align: center; font-size: 14px; color:#000; background:#fafbfc; top:1px;}
+.tab_con { width: 998px; border:1px solid #999; overflow: hidden;  background:#fafbfc;}
+.tab_cont { width: 996px;  height:52px; display:none; }
+/* or none */
+dl.tc_box { width: 998px; height: 52px; overflow: hidden; }
+dl.tc_box dt { text-align: center; width: 78px; height: 45px; float: left; padding-top: 5px; }
+dl.tc_box dd { text-align: center; width: 920px; height: 50px; float: left; }
+ul.tc_box_list li { display: block; width: 92px; height: 50px; float: left; }
+ul.tc_box_list li dl { width: 92px; height: 50px; overflow: hidden; line-height: 70px; }
+ul.tc_box_list li dt { width: 92px; height: 20px; line-height: 20px; color: #0053a0; overflow: hidden; }
+ul.tc_box_list li dd { width: 92px; height: 24px; line-height: 24px; }
+ul.tc_box_list li dd a { padding: 0px 2px; color: #666; }
+ul.tc_box_list li dd a:hover { color: #f60; }
+dl.tc_box dt p { height: 24px; line-height: 24px; }
+dl.tc_box dt b { height: 22px; line-height: 22px; }
+
+.back_top {display: none;width: 50px; height:72px; background:url(gotop.png); position: fixed;_position: absolute;left:50%;bottom:25px;_bottom: "auto";cursor: pointer; margin-left:540px;}
+    </style>
+    <script src="jq/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+
+    $(function(){
+        $(".tab_tit li").mouseover(function(){
+            var tabi = $(this).index();
+            $(".tab_cont").css("height","52px");
+            $(this).addClass('hover'); 
+            $(this).siblings().removeClass('hover');
+            $(".tab_cont").eq(tabi).siblings().hide();
+            $(".tab_cont").eq(tabi).show();
+        });
+
+        var wait_start = null, tstart = null, tend = null;
+
+        function showTabcont(th){
+           
+            th.parent().css("border","1px solid #999");
+            th.parent().animate({height:"160px"},500);                
+        } 
+
+        function tnow() {
+                return ( new Date() ).getTime();
+        }    
+
+        $(".tab_cont").mouseenter(function(event){
+            tstart = tnow();
+            wait_start = setInterval(function(){
+
+                showTabcont($(".tab_cont"));
+            },500);
+
+        });
+
+        $(".tab_cont").mouseleave(function(){
+            tend = tnow();
+            var tt = tstart-tend;
+            tstart = null;
+            tend = null;
+            if(tt<500){
+                clearInterval(wait_start);
+                wait_start=null;
+            }
+            
+            $(this).parent().animate({height:"52px"},500);
+        }); 
+
+
+        var $belem = $('<div class="back_top"></div>').appendTo($("body")).attr("title", "回顶部").click(function() {
+            $("html, body").animate({ scrollTop: 0 }, 300);
+        });
+        var $backfunc = function() {
+            var st = $(document).scrollTop(), winh = $(window).height();
+            (st > 800)? $belem.show(): $belem.hide();
+        //IE6下的定位
+            if (!window.XMLHttpRequest) {
+                $belem.css("top",st + winh - 166);
+            }
+        };
+        $(window).bind("scroll", $backfunc);
+        $backfunc(); 
+
+        
+    });
+     </script>
+
+</head>
+<body>
+<div style="width:1000px; height:2550px; background:#ded5df;"></div>
+<div class="toph">
+        <div class="toph_h">
+            <ul class="tab_tit">
+                <li class="hover"><a>热门品种</a></li>
+                <li><a>油脂包装</a></li>
+            </ul>
+        </div>
+
+        <div class="tab_con">
+            <div class="tab_cont" style="display:block">
+                <dl style="border-bottom: 1px solid #dedede;" class="tc_box">
+                    <dt>
+                        <p class="tcb1">&nbsp;</p>
+                        <b>动植物油</b></dt>
+                    <dd>
+                        <ul id="specie_layout1" class="tc_box_list"><li><dl><dt><a>菜籽油</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a>数据</a></dd></dl></li><li><dl><dt><a>大豆油</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a>数据</a></dd></dl></li><li><dl><dt><a>棕榈油</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a>数据</a></dd></dl></li><li><dl><dt><a>棉籽油</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a>数据</a></dd></dl></li><li><dl><dt><a>牛羊油</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a>数据</a></dd></dl></li></ul>
+                    </dd>
+                </dl>
+                <dl style="border-bottom: 1px solid #dedede;" class="tc_box">
+                    <dt>
+                        <p class="tcb2">&nbsp;</p>
+                        <b>饲料原料</b></dt>
+                    <dd>
+                        <ul id="specie_layout2" class="tc_box_list"></ul>
+                    </dd>
+                </dl>
+                <dl class="tc_box">
+                    <dt>
+                        <p class="tcb3">&nbsp;</p>
+                        <b>原粮作物</b></dt>
+                    <dd>
+                        <ul id="specie_layout3" class="tc_box_list"></ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="tab_cont">
+                <dl style="border-bottom: 1px solid #dedede;" class="tc_box">
+                    <dt>
+                        <p class="tcb4">&nbsp;</p>
+                        <b>中包装油</b></dt>
+                    <dd>
+                        <ul id="brand_layout1" class="tc_box_list"><li><dl><dt><a>金龙鱼</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>口福</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>宏冠</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>橄榄油</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>盈成</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>盛州</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>古稻田</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>大满贯</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>宏大</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>金龙鱼</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li></ul>
+                    </dd>
+                </dl>
+                <dl style="border-bottom: 1px solid #dedede;" class="tc_box">
+                    <dt>
+                        <p class="tcb5">&nbsp;</p>
+                        <b>小包装油</b></dt>
+                    <dd>
+                        <ul id="brand_layout2" class="tc_box_list"><li><dl><dt><a>邦之德</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>米多奇</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>香之缘</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>正大源</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>益海嘉里</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>牧鹤</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>康大饲料</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>伟鹏饲料</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>天丽牧业</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>吉青</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li></ul>
+                    </dd>
+                </dl>
+                <dl class="tc_box">
+                    <dt>
+                        <p class="tcb6">&nbsp;</p>
+                        <b>热门品牌</b></dt>
+                    <dd>
+                        <ul id="brand_layout3" class="tc_box_list"><li><dl><dt><a>元宝</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>红井源</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>伊兴</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>满意村</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>荣新</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>嘉家香</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>宏大</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>金雨花</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>假日</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li><li><dl><dt><a>家佳旺</a></dt><dd><a>价格</a>&nbsp;|&nbsp;<a  s="" target="_blank">数据</a></dd></dl></li></ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
