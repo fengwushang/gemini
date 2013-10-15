@@ -1,0 +1,69 @@
+/*清除文档类型声明中的默认属性*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td { margin: 0; padding: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+ol, ul { list-style: none; }
+caption, th { text-align: left; }
+.space10 { clear: both; font-size: 0; height: 10px; line-height: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+q:before, q:after { content: ''; }
+body, p, h1, h2, h3, h4, h5, h6, ul, li, ol, dl, dd, dt, div, form { margin: 0px auto; }
+/*字体定义*/
+html, body { -webkit-text-size-adjust: none; _background-attackment: fixed; }
+body { font-size: 14px; font-family: "Microsoft Yahei","微软雅黑","SimSun"; color: #333; background:#fff; }
+table { font-size: inherit; font: 100%; }
+/*重新定义*/
+
+strong { font-weight: bold; }
+a { color: #333; text-decoration: none; cursor: pointer; }
+a:visited { color: #333; }
+a:hover { color: #f60; }
+a:active { color: #333; }
+button { border: none; }
+input, textarea { outline: none; background:#fafbfc;}
+ul, li, ol, li { list-style: none; }
+.clear { clear: both; font-size: 0px; height: 0px; vertical-align: bottom; line-height: 0px; }
+.clearfix:after { visibility: hidden; display: block; content: "."; clear: both; height: 0; line-height: 0; font-size: 0; }
+.clearfix { display: inline-block; }
+* html .clearfix { zoom: 1; }
+*:first-child + html .clearfix { zoom: 1; }
+/* main */
+#head { width: 100%; position: relative; padding-top: 0px; height: 135px; z-index: 200; }
+#all { width: 1000px; margin: 0 auto; }
+/* index.html 头部工具栏 */
+
+* html #hd_top { height: 35px; position: absolute; left: expression(eval(document.documentElement.scrollLeft)); top: expression(eval(document.documentElement.scrollTop)); }
+
+/* index.html 头部工具栏 */
+
+
+/* 分类下拉菜单 */
+#mnav { width: 1000px; position: relative; z-index: 100; border-top:1px solid #999;}
+#navbar { position: relative; width: 100%; height: 30px; background: #1572b9; z-index: 800; }
+.main_nav { position: relative; float: left; font-family: arial,sans-serif; }
+.main_nav:after { content: ''; display: table; clear: both; }
+.main_nav a:hover { text-decoration: none; }
+.main_nav ul:after { content: ''; display: table; clear: both; }
+.main_nav ul li { float: left; line-height: 17px; font-size: 16px; }
+.main_nav ul li.submenu a { float: left; margin-top: 2px; padding: 5px 20px 5px 21px; color: #fff; _color: #fff; font-weight: 700; text-decoration: none;}
+.main_nav ul .hover .menu-hd { position: relative; z-index: 10000; padding: 5px 19px 5px 20px; background: #fff; border: solid #5c8abc; border-width: 1px 1px 0; color: #000; }
+
+.main_nav ul .home, .main_nav ul .open-course { *margin-top: 1px; }
+.main_nav ul .submenu { position: relative; }
+.main_nav ul .submenu .menu-bd { position: absolute; top: 100%; left: 0; z-index: 900; display: none; float: left; margin: -1px 0 0; list-style: none; background-color: #fff; border: 1px solid #5c8abc; border-top: none; }
+.main_nav ul .submenu .menu-bd ul li { margin: 0; clear: both; }
+.main_nav ul .submenu .menu-bd ul li a { float: left; padding: 3px 5px 3px 15px; width: 100px; color: #000; font-size: 14px; font-weight: 400; }
+.main_nav ul .submenu .menu-bd ul li a:hover { padding: 2px 5px 2px 15px; background: #416fa0; border: solid #5c8abc; border-width: 1px 0; color: #fff; }
+
+.main_nav ul .hover .menu-bd { display: block; margin-top: -1px; box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 5px; _margin-top: 0; }
+.main_nav ul .submenu img { height: 28px; width: 2px; float: left; }
+
+/*搜索下拉菜单*/
+.select-wrapper { display: inline; position:absolute; left:209px; top:0px; margin: 0px; width: 80px; height: 20px; z-index: 2; background: #dedede; cursor: pointer;}
+.select-wrapper .select { text-align: center; background: url("imgs/select_bg2.jpg") no-repeat scroll right center #fafbfc; }
+.select-wrapper .select span { color: #333; display: inline-block; height: 20px; line-height: 20px; width:80px; border-left:1px solid #333;}
+.select-wrapper .option { display: none; position: absolute; left: 0; top: 20px; height: 130px; border: 1px solid #999; overflow-x: hidden; overflow-y: auto; background-color: #fafbfc; z-index: 1000; }
+.select-wrapper:hover .option { display: block; }
+.select-wrapper ul li a { display: block; width: 80px; height: 20px; line-height: 20px; overflow: hidden; background-color: #fafbfc; color: #333; text-align: center; }
+.select-wrapper ul li a:hover { color: #000; background-color: #cacaca; text-decoration: none; }
