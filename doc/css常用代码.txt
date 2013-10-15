@@ -1,0 +1,83 @@
+bootstrap  bsie  jqsource
+git/wchaowu
+
+.test{
+color:#000000;                  /* FF,OP支持 */
+color:#0000FF\0;       /* IE8支持*/
+[color:#000000;color:#00FF00;      /* SF,CH支持 */
+*color:#FFFF00;                 /* IE7支持 */
+_color:#FF0000;              /* IE6支持 */
+}
+
+
+Css背景颜色透明（#ddd）
+.liter{
+filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#4CDDDDDD', endColorstr='#4CDDDDDD');
+}
+:root .liter {
+filter:none;     /*处理IE9浏览器中的滤镜效果*/
+background-color:rgba(221,221,221,0.3);
+}
+
+图片垂直居中对齐
+第一种：table-cell法
+<div class="test_box">
+	<img src="book.jpg" alt="" />
+</div>
+.test_box {display:table-cell;width:200px;height:200px;vertical-align:middle;text-align:center;
+	*float:left;*font-family:simsun;*font-size:200px;*line-height:1;
+	border:1px solid #000000;
+}
+.test_box img {vertical-align:middle;}
+
+第二种：span法
+<div class="test_box">
+	<span class="hook"></span>
+	<a href="http://blog.linxz.de/css_book/" target="_blank"><img src="book.jpg" alt="" /></a>
+</div>
+.test_box {width:200px;height:200px;overflow:hidden;text-align:center;font-size:0;border:1px solid #000000;}
+.test_box .hook {display:inline-block;width:0;height:100%;overflow:hidden;margin-left:-1px;font-size:0;line-height:0;vertical-align:middle;}
+.test_box img {vertical-align:middle;border:0 none;}
+
+
+css border制作小三角（兼容IE6）
+.triangle {display:inline-block;width:0;height:0;overflow:hidden;line-height:0;font-size:0;
+vertical-align:middle;
+border-right:7px solid #000fff;
+border-left:0 none;
+border-top:7px solid transparent;
+border-bottom:7px solid transparent;
+_color:#FF3FFF;
+_filter:chroma(color=#FF3FFF);
+}
+
+这个代码片段通过保证文本的包裹元素宽度适应内容的宽度，能够避免很长的文本超出内容区域。
+pre {
+    white-space: pre;           /* CSS 2.0 */
+    white-space: pre-wrap;      /* CSS 2.1 */
+    white-space: pre-line;      /* CSS 3.0 */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap;  /* HP Printers */
+    word-wrap: break-word;      /* IE 5+ */
+}
+
+
+透明度
+div{
+    opacity: .75; /* Standard: FF gt 1.5, Opera, Safari */
+    filter: alpha(opacity=75); /* IE lt 8 */
+    -ms-filter: "alpha(opacity=75)"; /* IE 8 */
+    -khtml-opacity: .75; /* Safari 1.x */
+    -moz-opacity: .75; /* FF lt 1.5, Netscape */
+}
+
+
+多重背景图片
+#multiple-images {
+    background: url(image_1.png) top left no-repeat,
+    url(image_2.png) bottom left no-repeat,
+    url(image_3.png) bottom right no-repeat;
+}
+
